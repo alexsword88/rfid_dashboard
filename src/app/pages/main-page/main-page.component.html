@@ -1,0 +1,93 @@
+<div *ngIf="!poseNet"
+     fxLayoutAlign="center center"
+     fxLayout="column"
+     fxFill>
+    <mat-spinner></mat-spinner>
+    <h1>Loading model ...</h1>
+</div>
+<div [style.display]="poseNet?'':'none'">
+    <div fxLayout="row"
+         fxLayoutAlign="center center"
+         style="height:100vh">
+        <div fxFlex="40"
+             class="mat-elevation-z6 video-container"
+             fxLayout="column"
+             fxLayoutAlign="center center">
+            <video autoplay
+                   #local
+                   playsinline
+                   [width]="local.videoWidth || defaultWidth"
+                   [height]="local.videoHeight || defaultHeight"
+                   (click)="showPoseDetect=!showPoseDetect"
+                   class="vertical-flip"
+                   style="width:100%;background:black;"></video>
+            <canvas #videoCanvas
+                    style="display: none;"
+                    [width]="local.videoWidth"
+                    [height]="local.videoHeight"></canvas>
+            <img #photo
+                 [style.display]="showPoseDetect?'block':'none'"
+                 style="position: absolute;"
+                 (click)="showPoseDetect=!showPoseDetect"
+                 [width]="local.videoWidth"
+                 [height]="local.videoHeight" />
+        </div>
+        <div fxFlex="60"
+             fxLayout="column"
+             fxLayoutAlign="space-evenly center"
+             style="height:100%">
+            <div fxLayout="row"
+                 style="width: 100%;"
+                 fxLayoutAlign="space-evenly center">
+                <div class="mat-elevation-z6 button-div"
+                     (click)="openConfig(true)"
+                     matRipple
+                     [matRippleCentered]="true"
+                     fxLayout="row"
+                     fxLayoutAlign="center center">
+                    <mat-icon style="height:auto"
+                              svgIcon="hand"
+                              [inline]="true"></mat-icon>
+                </div>
+                <div fxFlex="45"
+                     class="description-div">
+                    <p>{{ handDescription.time.lastTime?(handDescription.time.lastTime | date:dateFormat):"-" }}</p>
+                    <p>{{ handDescription.rssi?(handDescription.rssi):"-" }}</p>
+                    <p>{{ handDescription.epc }}</p>
+                </div>
+            </div>
+            <div *ngIf="alertFlag"
+                 fxLayout="column"
+                 fxLayoutAlign="center start">
+                <h1 style="color: red;">Warning: Falldown confirmed</h1>
+                <button color="warn"
+                        (click)="stopAlarm()"
+                        mat-raised-button>Stop Alarm</button>
+            </div>
+
+            <div fxLayout="row"
+                 style="width: 100%;"
+                 fxLayoutAlign="space-evenly center">
+                <div class="mat-elevation-z6 button-div"
+                     (click)="openConfig(false)"
+                     matRipple
+                     [matRippleCentered]="true"
+                     fxLayout="row"
+                     fxLayoutAlign="center center">
+                    <mat-icon style="height:auto;transform: rotate(-90deg)"
+                              svgIcon="foot"
+                              [inline]="true"></mat-icon>
+                </div>
+                <div fxFlex="45"
+                     class="description-div">
+                    <p>{{ legDescription.time.lastTime?(legDescription.time.lastTime | date:dateFormat):"-" }}</p>
+                    <p>{{ legDescription.rssi?(legDescription.rssi):"-" }}</p>
+                    <p>{{ legDescription.epc }}</p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>

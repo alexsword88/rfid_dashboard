@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "rfid-final-project"
+    }
+  },
+  "defaultProject": "rfid-final-project",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>更換標籤設定</h2>
+<mat-dialog-content>
+    <mat-form-field style="width:100%"
+                    appearance="outline">
+        <mat-label>EPC</mat-label>
+        <input matInput
+               type="text"
+               [value]="epc"
+               (change)="epc=$event.target.value">
+    </mat-form-field>
+    <mat-form-field style="width:100%"
+                    appearance="outline">
+        <mat-label>選擇天線ID</mat-label>
+        <mat-select [value]="aid"
+                    (valueChange)="aid=$event">
+            <mat-option [value]="0">全部</mat-option>
+            <mat-option [value]="1">1</mat-option>
+            <mat-option [value]="2">2</mat-option>
+            <mat-option [value]="3">3</mat-option>
+            <mat-option [value]="4">4</mat-option>
+        </mat-select>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button
+            mat-dialog-close>取消</button>
+    <button mat-button
+            (click)="saveConfig()">更新</button>
+</mat-dialog-actions>

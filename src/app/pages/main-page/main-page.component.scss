@@ -1,0 +1,25 @@
+.video-container {
+    margin: auto 1em;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    background-color: white;
+}
+
+.description-div {
+    font-size: 2em;
+
+    p {
+        margin-top: 1em;
+    }
+}
+
+.button-div {
+    width: 10vw;
+    height: 10vw;
+    text-align: center;
+    border-radius: 25px;
+    cursor: pointer;
+    user-select: none;
+    padding: 2em;
+}
